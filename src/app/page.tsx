@@ -1,65 +1,157 @@
 import Image from "next/image";
+import { Scaler } from "@/components/perkly/scaler";
+import { PurplePanel } from "@/components/perkly/purple-panel";
+import { PerklyLogo, SendArrow, CalendarIcon } from "@/components/perkly/icons";
+import { Countdown } from "@/components/perkly/countdown";
+import { Marquee } from "@/components/perkly/marquee";
+import cardsMountain from "../../public/assets/cards-mountain.png";
+import avatar1 from "../../public/assets/avatar-1.png";
+import avatar2 from "../../public/assets/avatar-2.png";
+import avatar3 from "../../public/assets/avatar-3.png";
+
+const NAV_LINKS = ["Membership", "Reward", "Membership", "Refer and Win"];
+
+const AVATARS = [
+  { src: avatar1, ring: "#a2f4a8", left: 0 },
+  { src: avatar2, ring: "#ffb230", left: 18.91 },
+  { src: avatar3, ring: "#c6b2e5", left: 38.15 },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <main
+      className="relative h-screen w-screen overflow-hidden bg-[#171717]"
+      style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}
+    >
+      {/* ---------- Full-bleed frame layer ---------- */}
+
+      {/* Purple panel (fills the inset, notch cut into the top edge) */}
+      <div className="absolute bottom-[30px] left-[34px] right-[34px] top-[30px]">
+        <PurplePanel />
+      </div>
+
+      {/* Credit-card mountain range — full-bleed, anchored to the source ratio */}
+      <Image
+        src={cardsMountain}
+        alt=""
+        width={1741}
+        height={1114}
+        priority
+        className="pointer-events-none absolute max-w-none"
+        style={{ top: "59%", left: "-2%", width: "104vw", height: "auto" }}
+      />
+
+      {/* Logo */}
+      <div className="absolute left-[7.85%] top-[57px] text-black">
+        <PerklyLogo />
+      </div>
+
+      {/* Center nav */}
+      <nav className="absolute left-1/2 top-[30px] flex -translate-x-1/2 items-center gap-[55px]">
+        {NAV_LINKS.map((label, i) => (
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            key={i}
+            href="#"
+            className="whitespace-nowrap text-[18px] font-semibold leading-[24px] tracking-[-0.02em] text-white"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            {label}
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+        ))}
+      </nav>
+
+      {/* Join waitlist pill */}
+      <a
+        href="#"
+        className="absolute right-[4.86%] top-[56px] flex h-[54px] w-[184px] items-center justify-center gap-[6px] rounded-[27px] bg-white"
+      >
+        <span className="inline-block translate-y-[6px] text-[32px] font-medium leading-none tracking-[-0.02em] text-black">
+          *
+        </span>
+        <span className="text-[18px] font-semibold leading-[24px] tracking-[-0.02em] text-black">
+          Join waitlist
+        </span>
+      </a>
+
+      {/* Bottom marquee */}
+      <div className="absolute bottom-0 left-0 w-full">
+        <Marquee />
+      </div>
+
+      {/* ---------- Contained content layer (centered, scales to fit) ---------- */}
+      <div className="pointer-events-none absolute bottom-[38%] left-0 right-0 top-[100px]">
+        <Scaler>
+          <div className="pointer-events-auto flex w-[778px] flex-col items-center">
+            {/* Headline */}
+            <h1 className="whitespace-nowrap font-display text-[84px] font-bold leading-[100px] tracking-[-0.02em] text-black">
+              Get early access
+            </h1>
+
+            {/* Subtitle */}
+            <p className="mt-[24px] text-center text-[24px] font-medium leading-[30px] tracking-[-0.02em] text-black">
+              Buy your favorite SaaS subscriptions through Perkly and receive
+              cashback on every purchase.
+            </p>
+
+            {/* Email form */}
+            <form className="relative mt-[33px] h-[52px] w-[372px]">
+              <input
+                type="email"
+                placeholder="email@gmail.com"
+                aria-label="Email address"
+                className="h-[52px] w-full rounded-full border-[0.5px] border-[#9c9999] bg-white pl-[16px] pr-[54px] text-[20px] leading-[24px] tracking-[0.015em] text-black outline-none placeholder:text-black/40"
+              />
+              <button
+                type="submit"
+                aria-label="Join the waitlist"
+                className="absolute right-[3px] top-[3px] flex h-[46px] w-[46px] items-center justify-center rounded-full text-white"
+                style={{
+                  background:
+                    "linear-gradient(155deg, #8c6dff 0%, #c3b4fd 50%, #8c6dff 100%)",
+                }}
+              >
+                <SendArrow />
+              </button>
+            </form>
+
+            {/* Avatars + caption */}
+            <div className="mt-[13px] flex items-center gap-[8px]">
+              <div className="relative h-[31.18px] w-[68px]">
+                {AVATARS.map((a, i) => (
+                  <span
+                    key={i}
+                    className="absolute top-0 h-[29.85px] w-[29.85px] overflow-hidden rounded-full border-2 border-black"
+                    style={{ left: a.left, background: a.ring }}
+                  >
+                    <Image
+                      src={a.src}
+                      alt=""
+                      width={30}
+                      height={30}
+                      className="h-full w-full object-cover"
+                    />
+                  </span>
+                ))}
+              </div>
+              <span className="whitespace-nowrap text-[13px] font-medium leading-[16px] tracking-[0.015em] text-black/80">
+                Join 500+ other on the waitlist
+              </span>
+            </div>
+
+            {/* Countdown */}
+            <div className="mt-[13px]">
+              <Countdown />
+            </div>
+
+            {/* Left until full release */}
+            <div className="mt-[38px] flex items-center gap-[8px] text-black">
+              <CalendarIcon />
+              <span className="whitespace-nowrap text-[15px] font-semibold leading-[18px] tracking-[0.02em]">
+                Left until full release
+              </span>
+            </div>
+          </div>
+        </Scaler>
+      </div>
+    </main>
   );
 }
