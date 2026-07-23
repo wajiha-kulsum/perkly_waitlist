@@ -26,7 +26,7 @@ export default function Home() {
       {/* ---------- Full-bleed frame layer ---------- */}
 
       {/* Purple panel (fills the inset, notch cut into the top edge) */}
-      <div className="absolute bottom-[30px] left-[34px] right-[34px] top-[30px]">
+      <div className="absolute bottom-[30px] left-[34px] right-[34px] top-[30px] max-md:bottom-[16px] max-md:left-[16px] max-md:right-[16px] max-md:top-[16px]">
         <PurplePanel />
       </div>
 
@@ -47,7 +47,7 @@ export default function Home() {
       </div>
 
       {/* Center nav */}
-      <nav className="absolute left-1/2 top-[30px] flex -translate-x-1/2 items-center gap-[55px]">
+      <nav className="absolute left-1/2 top-[30px] hidden -translate-x-1/2 items-center gap-[55px] md:flex">
         {NAV_LINKS.map((label, i) => (
           <a
             key={i}
@@ -62,12 +62,12 @@ export default function Home() {
       {/* Join waitlist pill */}
       <a
         href="#"
-        className="absolute right-[4.86%] top-[56px] flex h-[54px] w-[184px] items-center justify-center gap-[6px] rounded-[27px] bg-white"
+        className="absolute right-[4.86%] top-[56px] flex h-[54px] w-[184px] items-center justify-center gap-[6px] rounded-[27px] bg-white max-md:right-[16px] max-md:top-[16px] max-md:h-[40px] max-md:w-[130px]"
       >
-        <span className="inline-block translate-y-[6px] text-[32px] font-medium leading-none tracking-[-0.02em] text-black">
+        <span className="inline-block translate-y-[6px] text-[32px] font-medium leading-none tracking-[-0.02em] text-black max-md:text-[20px]">
           *
         </span>
-        <span className="text-[18px] font-semibold leading-[24px] tracking-[-0.02em] text-black">
+        <span className="text-[18px] font-semibold leading-[24px] tracking-[-0.02em] text-black max-md:text-[13px] max-md:leading-[16px]">
           Join waitlist
         </span>
       </a>
@@ -78,32 +78,32 @@ export default function Home() {
       </div>
 
       {/* ---------- Contained content layer (centered, scales to fit) ---------- */}
-      <div className="pointer-events-none absolute bottom-[38%] left-0 right-0 top-[100px]">
+      <div className="pointer-events-none absolute bottom-[38%] left-0 right-0 top-[100px] max-md:bottom-[10%] max-md:top-[75px]">
         <Scaler>
           <div className="pointer-events-auto flex w-[778px] flex-col items-center">
             {/* Headline */}
-            <h1 className="whitespace-nowrap font-display text-[84px] font-bold leading-[100px] tracking-[-0.02em] text-black">
+            <h1 className="whitespace-nowrap font-display text-[84px] font-bold leading-[100px] tracking-[-0.02em] text-black max-md:whitespace-normal max-md:text-[38px] max-md:leading-[44px] max-md:text-center">
               Get early access
             </h1>
 
             {/* Subtitle */}
-            <p className="mt-[24px] text-center text-[24px] font-medium leading-[30px] tracking-[-0.02em] text-black">
+            <p className="mt-[24px] text-center text-[24px] font-medium leading-[30px] tracking-[-0.02em] text-black max-md:mt-[16px] max-md:text-[14px] max-md:leading-[18px] max-md:px-[20px]">
               Buy your favorite SaaS subscriptions through Perkly and receive
               cashback on every purchase.
             </p>
 
             {/* Email form */}
-            <form className="relative mt-[33px] h-[52px] w-[372px]">
+            <form className="relative mt-[33px] h-[52px] w-[372px] max-md:mt-[20px] max-md:w-[300px] max-md:h-[44px]">
               <input
                 type="email"
                 placeholder="email@gmail.com"
                 aria-label="Email address"
-                className="h-[52px] w-full rounded-full border-[0.5px] border-[#9c9999] bg-white pl-[16px] pr-[54px] text-[20px] leading-[24px] tracking-[0.015em] text-black outline-none placeholder:text-black/40"
+                className="h-[52px] w-full rounded-full border-[0.5px] border-[#9c9999] bg-white pl-[16px] pr-[54px] text-[20px] leading-[24px] tracking-[0.015em] text-black outline-none placeholder:text-black/40 max-md:h-[44px] max-md:text-[16px] max-md:leading-[20px] max-md:pr-[46px]"
               />
               <button
                 type="submit"
                 aria-label="Join the waitlist"
-                className="absolute right-[3px] top-[3px] flex h-[46px] w-[46px] items-center justify-center rounded-full text-white"
+                className="absolute right-[3px] top-[3px] flex h-[46px] w-[46px] items-center justify-center rounded-full text-white max-md:h-[38px] max-md:w-[38px]"
                 style={{
                   background:
                     "linear-gradient(155deg, #8c6dff 0%, #c3b4fd 50%, #8c6dff 100%)",
@@ -114,7 +114,7 @@ export default function Home() {
             </form>
 
             {/* Avatars + caption */}
-            <div className="mt-[13px] flex items-center gap-[8px]">
+            <div className="mt-[13px] flex items-center gap-[8px] max-md:mt-[10px] max-md:scale-75">
               <div className="relative h-[31.18px] w-[68px]">
                 {AVATARS.map((a, i) => (
                   <span
@@ -143,7 +143,7 @@ export default function Home() {
             </div>
 
             {/* Left until full release */}
-            <div className="mt-[38px] flex items-center gap-[8px] text-black">
+            <div className="mt-[38px] flex items-center gap-[8px] text-black max-md:mt-[24px]">
               <CalendarIcon />
               <span className="whitespace-nowrap text-[15px] font-semibold leading-[18px] tracking-[0.02em]">
                 Left until full release

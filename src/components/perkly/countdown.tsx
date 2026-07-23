@@ -24,10 +24,10 @@ const pad = (n: number) => n.toString().padStart(2, "0");
 function Unit({ value, label }: { value: string; label: string }) {
   return (
     <div className="flex flex-col items-center">
-      <span className="font-display text-[36px] font-medium leading-[44px] tracking-[0.02em] text-black">
+      <span className="font-display text-[36px] font-medium leading-[44px] tracking-[0.02em] text-black max-md:text-[24px] max-md:leading-[28px]">
         {value}
       </span>
-      <span className="-mt-[3px] font-display text-[20px] font-light leading-[24px] tracking-[0.02em] text-black">
+      <span className="-mt-[3px] font-display text-[20px] font-light leading-[24px] tracking-[0.02em] text-black max-md:text-[13px] max-md:leading-[16px]">
         {label}
       </span>
     </div>
@@ -36,7 +36,7 @@ function Unit({ value, label }: { value: string; label: string }) {
 
 function Colon() {
   return (
-    <span className="font-display text-[36px] font-medium leading-[44px] text-black">
+    <span className="font-display text-[36px] font-medium leading-[44px] text-black max-md:text-[24px] max-md:leading-[28px]">
       :
     </span>
   );
@@ -54,7 +54,7 @@ export function Countdown() {
   }, []);
 
   return (
-    <div className="flex items-start justify-center gap-[13px]">
+    <div className="flex items-start justify-center gap-[13px] max-md:gap-[8px]">
       <Unit value={t.days.toString()} label="Days" />
       <Colon />
       <Unit value={pad(t.hours)} label="Hours" />

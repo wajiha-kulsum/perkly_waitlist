@@ -32,8 +32,8 @@ function Track() {
 export function Marquee() {
   return (
     <div className="relative h-[60px] w-full overflow-hidden bg-[#0b150a]">
-      <div className="absolute left-[34px] right-[34px] top-[8px] h-px bg-white/70" />
-      <div className="absolute left-[34px] right-[34px] top-[52px] h-px bg-white/70" />
+      <div className="absolute left-[34px] right-[34px] top-[8px] h-px bg-white/70 max-md:left-[16px] max-md:right-[16px]" />
+      <div className="absolute left-[34px] right-[34px] top-[52px] h-px bg-white/70 max-md:left-[16px] max-md:right-[16px]" />
       <div
         className="absolute top-1/2 flex -translate-y-1/2 will-change-transform"
         style={{ animation: "perkly-marquee 24s linear infinite" }}
