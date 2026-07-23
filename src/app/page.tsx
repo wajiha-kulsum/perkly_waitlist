@@ -80,7 +80,7 @@ export default function Home() {
       {/* ---------- Contained content layer (centered, scales to fit) ---------- */}
       <div className="pointer-events-none absolute bottom-[38%] left-0 right-0 top-[100px] max-md:bottom-[10%] max-md:top-[75px]">
         <Scaler>
-          <div className="pointer-events-auto flex w-[778px] flex-col items-center">
+          <div className="pointer-events-auto flex w-[778px] flex-col items-center max-md:w-full max-md:px-5">
             {/* Headline */}
             <h1 className="whitespace-nowrap font-display text-[84px] font-bold leading-[100px] tracking-[-0.02em] text-black max-md:whitespace-normal max-md:text-[38px] max-md:leading-[44px] max-md:text-center">
               Get early access
@@ -93,7 +93,7 @@ export default function Home() {
             </p>
 
             {/* Email form */}
-            <form className="relative mt-[33px] h-[52px] w-[372px] max-md:mt-[20px] max-md:w-[300px] max-md:h-[44px]">
+            <form className="relative mt-[33px] h-[52px] w-[372px] max-md:mt-[20px] max-md:w-full max-md:h-[44px]">
               <input
                 type="email"
                 placeholder="email@gmail.com"
@@ -114,7 +114,7 @@ export default function Home() {
             </form>
 
             {/* Avatars + caption */}
-            <div className="mt-[13px] flex items-center gap-[8px] max-md:mt-[10px] max-md:scale-75">
+            <div className="mt-[13px] flex items-center gap-[8px] max-md:mt-[10px]">
               <div className="relative h-[31.18px] w-[68px]">
                 {AVATARS.map((a, i) => (
                   <span
