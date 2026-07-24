@@ -1,15 +1,19 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 import { Scaler } from "@/components/perkly/scaler";
 import { PurplePanel } from "@/components/perkly/purple-panel";
 import { PerklyLogo, SendArrow, CalendarIcon } from "@/components/perkly/icons";
 import { Countdown } from "@/components/perkly/countdown";
 import { Marquee } from "@/components/perkly/marquee";
+import { PartnerModal } from "@/components/perkly/partner-modal";
 import cardsMountain from "../../public/assets/cards-mountain.png";
 import avatar1 from "../../public/assets/avatar-1.png";
 import avatar2 from "../../public/assets/avatar-2.png";
 import avatar3 from "../../public/assets/avatar-3.png";
 
-const NAV_LINKS = ["Membership", "Reward", "Membership", "Refer and Win"];
+const NAV_LINKS = ["Membership", "Reward", "Partnership", "Refer and Win"];
 
 const AVATARS = [
   { src: avatar1, ring: "#a2f4a8", left: 0 },
@@ -18,6 +22,8 @@ const AVATARS = [
 ];
 
 export default function Home() {
+  const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
+
   return (
     <main
       className="relative h-screen w-screen overflow-hidden bg-[#171717]"
@@ -46,31 +52,38 @@ export default function Home() {
         <PerklyLogo />
       </div>
 
-      {/* Center nav */}
-      <nav className="absolute left-1/2 top-[30px] hidden -translate-x-1/2 items-center gap-[55px] md:flex">
+      {/* Center nav - aligned closer to top edge inside black notch area */}
+      <nav className="absolute left-1/2 top-[18px] z-10 hidden h-[38px] -translate-x-1/2 items-center justify-center gap-[36px] lg:gap-[55px] md:flex">
         {NAV_LINKS.map((label, i) => (
           <a
             key={i}
             href="#"
-            className="whitespace-nowrap text-[18px] font-semibold leading-[24px] tracking-[-0.02em] text-white"
+            onClick={(e) => {
+              if (label === "Partnership") {
+                e.preventDefault();
+                setIsPartnerModalOpen(true);
+              }
+            }}
+            className="whitespace-nowrap text-[17px] font-semibold leading-[24px] tracking-[-0.02em] text-white transition-opacity hover:opacity-80 lg:text-[18px]"
           >
             {label}
           </a>
         ))}
       </nav>
 
-      {/* Join waitlist pill */}
-      <a
-        href="#"
-        className="absolute right-[4.86%] top-[56px] flex h-[54px] w-[184px] items-center justify-center gap-[6px] rounded-[27px] bg-white max-md:right-[16px] max-md:top-[16px] max-md:h-[40px] max-md:w-[130px]"
+      {/* Partner with us pill */}
+      <button
+        type="button"
+        onClick={() => setIsPartnerModalOpen(true)}
+        className="absolute right-[4.86%] top-[56px] z-10 flex h-[54px] px-[24px] items-center justify-center gap-[6px] rounded-[27px] bg-white transition-transform active:scale-95 max-md:right-[16px] max-md:top-[16px] max-md:h-[40px] max-md:px-[14px]"
       >
         <span className="inline-block translate-y-[6px] text-[32px] font-medium leading-none tracking-[-0.02em] text-black max-md:text-[20px]">
           *
         </span>
-        <span className="text-[18px] font-semibold leading-[24px] tracking-[-0.02em] text-black max-md:text-[13px] max-md:leading-[16px]">
-          Join waitlist
+        <span className="whitespace-nowrap text-[18px] font-semibold leading-[24px] tracking-[-0.02em] text-black max-md:text-[13px] max-md:leading-[16px]">
+          Partner with us
         </span>
-      </a>
+      </button>
 
       {/* Bottom marquee */}
       <div className="absolute bottom-0 left-0 w-full">
@@ -152,6 +165,13 @@ export default function Home() {
           </div>
         </Scaler>
       </div>
+
+      {/* Partner Glass Modal */}
+      <PartnerModal
+        isOpen={isPartnerModalOpen}
+        onClose={() => setIsPartnerModalOpen(false)}
+      />
     </main>
   );
 }
+

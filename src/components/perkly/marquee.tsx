@@ -1,4 +1,4 @@
-const PHRASES = ["Clear your credit bills", "Win special rewards"];
+const PHRASES = ["Subscription bring you rewards", "Win special rewards"];
 
 function Star() {
   return (
