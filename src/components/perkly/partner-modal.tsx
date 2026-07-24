@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import { PerklyLogo } from "@/components/perkly/icons";
+import giftBoxPic from "../../../public/assets/Gift box.png";
 
 interface PartnerModalProps {
   isOpen: boolean;
@@ -31,115 +34,148 @@ export function PartnerModal({ isOpen, onClose }: PartnerModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-md p-4 transition-all duration-300"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-6 transition-all duration-300 overflow-y-auto"
       onClick={handleResetAndClose}
     >
+      {/* Voucher Ticket Card */}
       <div
-        className="relative w-full max-w-[460px] max-h-[90vh] overflow-y-auto rounded-[24px] sm:rounded-[28px] border border-white/20 bg-[#161224]/90 p-5 sm:p-8 shadow-[0_0_50px_rgba(130,95,254,0.35)] backdrop-blur-2xl transition-all"
+        className="relative w-full max-w-[920px] bg-[#121215] text-white rounded-[28px] sm:rounded-[36px] shadow-[0_20px_60px_rgba(0,0,0,0.8)] border border-white/10 overflow-hidden transition-all duration-300 my-auto"
+        style={{
+          WebkitMaskImage:
+            "radial-gradient(circle 24px at 0% 50%, transparent 23px, black 24px), radial-gradient(circle 24px at 100% 50%, transparent 23px, black 24px)",
+          WebkitMaskComposite: "source-in",
+          maskImage:
+            "radial-gradient(circle 24px at 0% 50%, transparent 23px, black 24px), radial-gradient(circle 24px at 100% 50%, transparent 23px, black 24px)",
+          maskComposite: "intersect",
+        }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Glow ambient background element */}
-        <div className="pointer-events-none absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#8c6dff]/30 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-[#c3b4fd]/20 blur-3xl" />
-
         {/* Close Button */}
         <button
           onClick={handleResetAndClose}
           aria-label="Close modal"
-          className="absolute right-4 top-4 sm:right-5 sm:top-5 flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full bg-white/10 text-white/70 transition-all hover:bg-white/20 hover:text-white"
+          className="absolute right-5 top-5 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/70 hover:bg-white/20 hover:text-white transition-all focus:outline-none"
         >
           ✕
         </button>
 
-        {!isSubmitted ? (
-          <>
-            {/* Header */}
-            <div className="mb-5 sm:mb-6 pr-6">
-              <span className="inline-block text-[12px] sm:text-[13px] font-semibold tracking-wider text-[#c3b4fd] uppercase">
-                ✦ Partnership
-              </span>
-              <h2 className="mt-0.5 text-[24px] sm:text-[28px] font-bold leading-tight text-white">
-                Partner with us
-              </h2>
-              <p className="mt-1.5 text-[13px] sm:text-[14px] font-medium leading-[19px] sm:leading-[20px] text-white/70">
-                Join forces with Perkly. Fill out your details below and our team will get in touch.
-              </p>
-            </div>
+        {/* Modal Main Content Container */}
+        <div className="flex flex-col md:flex-row items-stretch w-full min-h-[460px]">
+          {/* Left Form Section (~62%) */}
+          <div className="w-full md:w-[60%] lg:w-[62%] p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between">
+            {!isSubmitted ? (
+              <>
+                {/* Header with Perkly Logo */}
+                <div>
+                  <div className="flex items-center gap-2 text-[#9E4DFF]">
+                    <PerklyLogo className="h-7 sm:h-8 w-auto text-[#9E4DFF]" />
+                  </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="flex flex-col gap-3.5 sm:gap-4">
-              <div>
-                <label className="mb-1 block text-[12px] sm:text-[13px] font-semibold text-white/90">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  required
-                  placeholder="Enter your name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="h-[44px] sm:h-[48px] w-full rounded-xl sm:rounded-2xl border border-white/15 bg-white/10 px-3.5 sm:px-4 text-[14px] sm:text-[15px] text-white outline-none placeholder:text-white/40 focus:border-[#a282fe] focus:bg-white/15 focus:ring-1 focus:ring-[#a282fe] transition-all"
-                />
+                  <h2 className="mt-4 text-[30px] sm:text-[36px] font-bold tracking-tight text-white leading-tight">
+                    Partner with us
+                  </h2>
+                </div>
+
+                {/* Form Fields */}
+                <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
+                  {/* Name Input */}
+                  <div>
+                    <label className="mb-1.5 block text-sm sm:text-base font-medium text-white/90">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Enter your name"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="h-[48px] sm:h-[52px] w-full rounded-xl sm:rounded-2xl border border-white/5 bg-[#212125] px-4 text-sm sm:text-base text-white outline-none placeholder:text-white/30 focus:border-[#9E4DFF] focus:bg-[#26262b] focus:ring-1 focus:ring-[#9E4DFF] transition-all"
+                    />
+                  </div>
+
+                  {/* Email Input */}
+                  <div>
+                    <label className="mb-1.5 block text-sm sm:text-base font-medium text-white/90">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="Enter your email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="h-[48px] sm:h-[52px] w-full rounded-xl sm:rounded-2xl border border-white/5 bg-[#212125] px-4 text-sm sm:text-base text-white outline-none placeholder:text-white/30 focus:border-[#9E4DFF] focus:bg-[#26262b] focus:ring-1 focus:ring-[#9E4DFF] transition-all"
+                    />
+                  </div>
+
+                  {/* Queries Input */}
+                  <div>
+                    <label className="mb-1.5 block text-sm sm:text-base font-medium text-white/90">
+                      Queries:
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Tell us about your proposal or questions.........."
+                      value={queries}
+                      onChange={(e) => setQueries(e.target.value)}
+                      className="h-[48px] sm:h-[52px] w-full rounded-xl sm:rounded-2xl border border-white/5 bg-[#212125] px-4 text-sm sm:text-base text-white outline-none placeholder:text-white/30 focus:border-[#9E4DFF] focus:bg-[#26262b] focus:ring-1 focus:ring-[#9E4DFF] transition-all"
+                    />
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    className="mt-2 h-[48px] sm:h-[52px] w-full rounded-xl sm:rounded-2xl text-sm sm:text-base font-semibold text-white shadow-lg transition-all active:scale-[0.99] hover:brightness-110 hover:shadow-[0_0_30px_rgba(158,77,255,0.4)]"
+                    style={{
+                      background:
+                        "linear-gradient(155deg, #8c6dff 0%, #c3b4fd 50%, #8c6dff 100%)",
+                    }}
+                  >
+                    Submit Proposal
+                  </button>
+                </form>
+              </>
+            ) : (
+              <div className="my-auto py-8 text-center">
+                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#9E4DFF]/20 text-[32px] text-[#c3b4fd]">
+                  ✓
+                </div>
+                <h3 className="text-2xl font-bold text-white">Proposal Sent!</h3>
+                <p className="mt-2 text-sm sm:text-base leading-relaxed text-white/70">
+                  Thank you, <span className="font-semibold text-white">{name}</span>. We have received your proposal and will reach out to <span className="font-semibold text-white">{email}</span> soon!
+                </p>
+                <button
+                  onClick={handleResetAndClose}
+                  className="mt-6 h-12 w-full rounded-xl bg-white/15 text-sm sm:text-base font-semibold text-white transition-all hover:bg-white/25"
+                >
+                  Done
+                </button>
               </div>
-
-              <div>
-                <label className="mb-1 block text-[12px] sm:text-[13px] font-semibold text-white/90">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  placeholder="name@company.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="h-[44px] sm:h-[48px] w-full rounded-xl sm:rounded-2xl border border-white/15 bg-white/10 px-3.5 sm:px-4 text-[14px] sm:text-[15px] text-white outline-none placeholder:text-white/40 focus:border-[#a282fe] focus:bg-white/15 focus:ring-1 focus:ring-[#a282fe] transition-all"
-                />
-              </div>
-
-              <div>
-                <label className="mb-1 block text-[12px] sm:text-[13px] font-semibold text-white/90">
-                  Queries
-                </label>
-                <textarea
-                  required
-                  rows={3}
-                  placeholder="Tell us about your proposal or questions..."
-                  value={queries}
-                  onChange={(e) => setQueries(e.target.value)}
-                  className="w-full rounded-xl sm:rounded-2xl border border-white/15 bg-white/10 p-3.5 sm:p-4 text-[14px] sm:text-[15px] text-white outline-none placeholder:text-white/40 focus:border-[#a282fe] focus:bg-white/15 focus:ring-1 focus:ring-[#a282fe] transition-all resize-none"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="mt-1 sm:mt-2 h-[46px] sm:h-[50px] w-full rounded-xl sm:rounded-2xl text-[15px] sm:text-[16px] font-semibold text-white shadow-lg transition-all active:scale-[0.99] hover:shadow-[0_0_25px_rgba(140,109,255,0.5)]"
-                style={{
-                  background:
-                    "linear-gradient(155deg, #8c6dff 0%, #c3b4fd 50%, #8c6dff 100%)",
-                }}
-              >
-                Submit Partnership Request
-              </button>
-            </form>
-          </>
-        ) : (
-          <div className="py-6 sm:py-8 text-center">
-            <div className="mx-auto mb-3 sm:mb-4 flex h-14 w-14 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-[#8c6dff]/20 text-[28px] sm:text-[32px] text-[#c3b4fd]">
-              ✓
-            </div>
-            <h3 className="text-[22px] sm:text-[24px] font-bold text-white">Request Received!</h3>
-            <p className="mt-2 text-[13px] sm:text-[14px] leading-[19px] sm:leading-[20px] text-white/70">
-              Thank you, <span className="font-semibold text-white">{name}</span>. We have received your query and will contact you at <span className="font-semibold text-white">{email}</span> soon.
-            </p>
-            <button
-              onClick={handleResetAndClose}
-              className="mt-5 sm:mt-6 h-[44px] sm:h-[46px] w-full rounded-xl sm:rounded-2xl bg-white/15 text-[14px] sm:text-[15px] font-semibold text-white transition-all hover:bg-white/25"
-            >
-              Done
-            </button>
+            )}
           </div>
-        )}
+
+          {/* Center Dashed Divider Line */}
+          <div className="relative flex items-center justify-center px-0 md:px-0 my-2 md:my-4">
+            <div className="hidden md:block w-[1px] h-full border-r-2 border-dashed border-zinc-700/80" />
+            <div className="block md:hidden w-full h-[1px] border-b-2 border-dashed border-zinc-700/80" />
+          </div>
+
+          {/* Right Section (~42% Width): Opening Gift Box Asset */}
+          <div className="w-full md:w-[42%] lg:w-[44%] p-2 sm:p-4 md:p-6 flex items-center justify-center relative overflow-hidden bg-[#121215]">
+            <div className="relative w-full h-full min-h-[280px] sm:min-h-[360px] md:min-h-[440px] flex items-center justify-center">
+              <Image
+                src={giftBoxPic}
+                alt="Perkly Gift Box"
+                priority
+                className="w-[125%] h-[125%] max-w-none object-contain filter drop-shadow-[0_10px_35px_rgba(158,77,255,0.3)] transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
+
+
